@@ -125,6 +125,7 @@ void ModelData::copy(const ModelData & src)
   usbJoystickCircularCut = src.usbJoystickCircularCut;
   memcpy(&usbJoystickCh[0], &src.usbJoystickCh[0], sizeof(usbJoystickCh[0]) * CPN_USBJ_MAX_JOYSTICK_CHANNELS);
   checklistData = src.checklistData;
+  image = src.image;
   updRefList = nullptr;
   memset(&updRefInfo, 0, sizeof(updRefInfo));
 }
@@ -344,6 +345,7 @@ void ModelData::clear()
     usbJoystickCh[i].clear();
 
   checklistData.clear();
+  image = QImage();
 
   if (updRefList)
     delete updRefList;
@@ -2306,4 +2308,38 @@ void ModelData::updateSourceNumRef(int & value)
     if (srcnum.isSource())
       updateSourceIntRef(value);
   }
+}
+
+QString ModelData::getImageFilename() const
+{
+  if (bitmap[0] != '\0') {
+    QString extn;
+
+    if (!getCurrentFirmware()->getCapability(ModelImageKeepExtn))
+      extn = "." % getDefaultImageFileExtn();
+
+    return QString(bitmap).append(extn);
+  } else {
+    return QString();
+  }
+}
+
+QString ModelData::getImageFileExtn() const
+{
+  if (getCurrentFirmware()->getCapability(ModelImageKeepExtn)) {
+    QStringList strl = QString(bitmap).split(".");
+    return strl.at(strl.count() - 1);
+  } else {
+    return getDefaultImageFileExtn();
+  }
+}
+
+QString ModelData::getDefaultImageFileExtn()
+{
+  QString ret;
+
+  if (!getCurrentFirmware()->getCapability(ModelImageKeepExtn))
+    ret = getCurrentFirmware()->getCapabilityStr(ModelImageFilters).replace("*.", "");
+
+  return ret;
 }
