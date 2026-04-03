@@ -1329,7 +1329,6 @@ bool MdiChild::loadFile(const QString & filename, bool resetCurrentFile)
     refresh();
   }
 
-  loadModelImages();
   radioData.validateModels();
   updateStatusBar();
 
@@ -1939,23 +1938,4 @@ void MdiChild::updateStatusBar()
 
   statusBarIcon->setPixmap(p.scaled(QSize(24, 24)));
   statusBarCount->setText(cnt.text());
-}
-
-//  try to load missing model images from radio profile sd path
-void MdiChild::loadModelImages()
-{
-  const QString path = g.currentProfile().sdPath();
-
-  if (!path.isEmpty() && QFileInfo(path).exists()) {
-    for (auto& model : radioData.models) {
-      if (!model.isBitmapEmpty() && model.image.isNull()) {
-        QString fname = path % "/IMAGES/" % model.getImageFilename();
-        if (!model.image.load(fname)) {
-          model.image = QImage();
-        } else {
-          qDebug() << "Loaded image from" << fname;
-        }
-      }
-    }
-  }
 }
