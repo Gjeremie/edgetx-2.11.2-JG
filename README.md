@@ -1,51 +1,32 @@
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Edgetx/edgetx)](https://github.com/EdgeTX/edgetx/releases/latest)
-[![GitHub all releases](https://img.shields.io/github/downloads/EdgeTX/edgetx/total)](https://github.com/EdgeTX/edgetx/releases)
-[![GitHub license](https://img.shields.io/github/license/Edgetx/edgetx)](https://github.com/EdgeTX/edgetx/blob/main/LICENSE)
-[![Commit Tests](https://github.com/EdgeTX/edgetx/actions/workflows/build_fw.yml/badge.svg)](https://github.com/EdgeTX/edgetx/actions/workflows/build_fw.yml)
-[![GitHub CodesSpaces ready-to-code](https://img.shields.io/badge/GitHub%20CodesSpaces-ready--to--code-blue?logo=github)](https://codespaces.new/EdgeTX/edgetx)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
-[![Discord](https://img.shields.io/discord/839849772864503828.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/wF9wUKnZ6H)
-[![Support us on OpenCollective](https://img.shields.io/opencollective/all/edgetx)](https://opencollective.com/edgetx)
+**Version EdgeTX 2.11.2 avec mes modif suivantes JG**
+
+modif vario pour avoir son continu (pas encore fait)
+
+**Pour faire build edgetx:**
+
+info tiré de : https://github.com/EdgeTX/edgetx/wiki/Building-radio-firmware-in-a-webbrowser-with-Gitpod <br>
+options: https://github.com/EdgeTX/edgetx/wiki/Compilation-options <br> <br>
 
 
-<p align="center">
-<a href="https://raw.githubusercontent.com/EdgeTX/edgetx.github.io/master/docs/assets/logo.png"><img src="https://raw.githubusercontent.com/EdgeTX/edgetx.github.io/master/docs/assets/logo.png" align="center" height="150" width="150" ></a>
+**CODE: <br>**
 
-# Welcome to EdgeTX!
-**The cutting edge open-source firmware for your R/C radio!**
+https://gitpod.io/#https://github.com/edgetx/edgetx/tree/2b920a014b0d69684eecfc20a74855d8b553e005
 
 
-### About EdgeTX
-EdgeTX is the cutting edge of OpenTX. It is the place where innovative ideas and cutting-edge features are developed and field-tested by the enthusiasts of our hobby. EdgeTX is a community project – ideas from the community, developed by the community, and enjoyed by the community! The community will always have a say in what EdgeTX is and what EdgeTX will be in the future. Without community feedback and involvement EdgeTX cannot exist.
+cmake -Wno-dev -DPCB=X7 -DPCBREV=MT12 -DDEFAULT_MODE=2 -DCMAKE_BUILD_TYPE=Release ../
 
-### Community
-- [Discord](https://discord.gg/wF9wUKnZ6H)   
+make arm-none-eabi-configure
 
-- [Facebook](https://www.facebook.com/groups/edgetx)
+make -C arm-none-eabi -j\`nproc\` firmware
 
-- [Github Discussions](https://github.com/EdgeTX/edgetx/discussions)
-  
-### Navigation Links
+cd arm-none-eabi <br>
+mv firmware.bin edgetx_mt12_3d1e7a9_6_dec_2024.bin
 
-- [Community Guidelines](https://github.com/EdgeTX/edgetx.github.io/wiki/Community-Guidlines)
+ <br> <br>
+**ou AUTRE CODE: <br>**
 
-- [Installation Guide](https://manual.edgetx.org/installing-and-updating-edgetx/update-from-opentx-to-edgetx)
+https://gitpod.io/#https://github.com/Gjeremie/edgetx-JG-2.11-RC1/tree/revert-5686-3djc/bw-f4-em
 
-- [Installation Video](https://www.youtube.com/watch?v=Y9OvW9XCjOs)
+cd /workspace/edgetx-JG-2.11-RC1/
 
-- [Reporting Issues / Requesting features](https://github.com/EdgeTX/edgetx/issues/new/choose)
-
-- [Lua Documentation Site](https://luadoc.edgetx.org/)
-  
-- Buddy: [Info](https://github.com/EdgeTX/buddy) - [Downloads](https://github.com/EdgeTX/buddy/releases) 
-
-- SD Card: [Info](https://github.com/EdgeTX/edgetx-sdcard) - [Downloads](https://github.com/EdgeTX/edgetx-sdcard/releases)
-
-- Sound Packs:  [Info](https://github.com/EdgeTX/edgetx-sdcard-sounds) - [Downloads](https://github.com/EdgeTX/edgetx-sdcard-sounds/releases)
-
-- [Developer Documentation](https://edgetx.org/edgetx/latest/) - [Docker Build Environment](https://github.com/EdgeTX/build-edgetx)
-
-
-## Acknowledgements
-Some icon assets provided by [ICONS8](https://icons8.com).</br>
-Lua Documentation site powered with the kind support of [GitBook](https://www.gitbook.com).
+FLAVOR=mt12 tools/build-gh.sh
