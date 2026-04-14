@@ -25,8 +25,8 @@ mv firmware.bin edgetx_mt12_3d1e7a9_6_dec_2024.bin
  <br> <br>
 **ou AUTRE CODE: <br>**
 
-https://gitpod.io/#https://github.com/Gjeremie/edgetx-JG-2.11-RC1/tree/revert-5686-3djc/bw-f4-em
+[https://gitpod.io/#https://github.com/Gjeremie/edgetx-JG-2.11-RC1/tree/revert-5686-3djc/bw-f4-em](https://gitpod.io/#https://github.com/Gjeremie/edgetx-2.11.2-JG)
 
-cd /workspace/edgetx-JG-2.11-RC1/
+cd /workspace/edgetx-2.11.2-JG/
 
 FLAVOR=mt12 tools/build-gh.sh
