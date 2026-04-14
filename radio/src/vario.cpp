@@ -45,25 +45,28 @@ void varioWakeup()
     else if (verticalSpeed < varioMin)
       verticalSpeed = varioMin;
 
-    if (verticalSpeed <= varioCenterMin) {
-      varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) - (((VARIO_FREQUENCY_ZERO+(g_eeGeneral.varioPitch*10)-((VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10))/2)) * (verticalSpeed-varioCenterMin)) / varioMin);
-      varioDuration = 80; // continuous beep: we will enter again here before the tone ends
+   if (verticalSpeed <= varioCenterMin) { // vitesse vario negative
+		varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (-verticalSpeed+varioCenterMin)) / (-varioMin));
+      varioDuration = (g_eeGeneral.varioRepeat+40)*3; 
+	  varioPause = (g_eeGeneral.varioRepeat+40)*2;
       varioFlags = PLAY_BACKGROUND|PLAY_NOW;
     }
-    else if (verticalSpeed >= varioCenterMax || !g_model.varioData.centerSilent) {
-      varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (verticalSpeed-varioCenterMin)) / varioMax);
-      int varioPeriod = VARIO_REPEAT_MAX + ((VARIO_REPEAT_ZERO+(g_eeGeneral.varioRepeat*10)-VARIO_REPEAT_MAX) * (varioMax-verticalSpeed) * (varioMax-verticalSpeed)) / ((varioMax-varioCenterMin) * (varioMax-varioCenterMin));
+    else if (verticalSpeed >= varioCenterMax || !g_model.varioData.centerSilent) { // vitesse vario positive
+      varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (verticalSpeed-varioCenterMax)) / varioMax);
+    
       if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax) {
-        varioDuration = 80; // continuous beep: we will enter again here before the tone ends
+        varioDuration = 35; // continuous beep: we will enter again here before the tone ends
         varioPause = 0;
       }
-      else {
-        varioDuration = varioPeriod / 5;
-        varioPause = varioPeriod - varioDuration;
+      else { // entre les 2
+         varioDuration = (g_eeGeneral.varioRepeat+40)*6; 
+	  varioPause = (g_eeGeneral.varioRepeat+40)*4;
       }
       
       varioFlags = PLAY_BACKGROUND|PLAY_NOW;
     }
+	
+	
     else {
       return;
     }
