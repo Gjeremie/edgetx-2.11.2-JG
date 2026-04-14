@@ -54,11 +54,12 @@ void varioWakeup()
       varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (verticalSpeed-varioCenterMin)) / varioMax);
       int varioPeriod = VARIO_REPEAT_MAX + ((VARIO_REPEAT_ZERO+(g_eeGeneral.varioRepeat*10)-VARIO_REPEAT_MAX) * (varioMax-verticalSpeed) * (varioMax-verticalSpeed)) / ((varioMax-varioCenterMin) * (varioMax-varioCenterMin));
       if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax)
-        varioDuration = varioPeriod / 5;
+        varioDuration = 80; // continuous beep: we will enter again here before the tone ends
       else
-        varioDuration = varioPeriod * (85 - (((verticalSpeed-varioCenterMin) * 25) / (varioCenterMax-varioCenterMin))) / 100;
-      varioPause = varioPeriod - varioDuration;
-      varioFlags = PLAY_BACKGROUND;
+        varioDuration = varioPeriod / 5;
+      
+      
+      varioFlags = PLAY_BACKGROUND|PLAY_NOW;
     }
     else {
       return;
