@@ -53,7 +53,7 @@ void varioWakeup()
     else if (verticalSpeed >= varioCenterMax || !g_model.varioData.centerSilent) {
       varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (verticalSpeed-varioCenterMin)) / varioMax);
       int varioPeriod = VARIO_REPEAT_MAX + ((VARIO_REPEAT_ZERO+(g_eeGeneral.varioRepeat*10)-VARIO_REPEAT_MAX) * (varioMax-verticalSpeed) * (varioMax-verticalSpeed)) / ((varioMax-varioCenterMin) * (varioMax-varioCenterMin));
-      if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax){
+      if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax) {
         varioDuration = 80; // continuous beep: we will enter again here before the tone ends
         varioPause = 0;
       }
