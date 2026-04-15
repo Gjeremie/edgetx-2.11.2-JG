@@ -54,7 +54,7 @@ float f_vitesse, f_diviseur;
     f_diviseur = (float)(-varioMin);
 	   if (f_diviseur <= 0.0f) f_diviseur = 1.0f;
 	   
-	varioFreq = (VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
+	varioFreq = (VARIO_FREQUENCY_ZERO -150 + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
       varioDuration = (g_eeGeneral.varioRepeat+40)*3; 
 	  varioPause = (g_eeGeneral.varioRepeat+40)*2;
       varioFlags = PLAY_BACKGROUND;
@@ -65,7 +65,7 @@ float f_vitesse, f_diviseur;
     f_diviseur = (float)varioMax;
 		if (f_diviseur <= 0.0f) f_diviseur = 1.0f;
 		
-	varioFreq = (VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
+	varioFreq = (VARIO_FREQUENCY_ZERO -150 + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
     
       if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax) {
         varioDuration = 35; // continuous beep: we will enter again here before the tone ends
