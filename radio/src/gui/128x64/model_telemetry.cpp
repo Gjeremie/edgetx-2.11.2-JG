@@ -273,10 +273,10 @@ void menuModelTelemetry(event_t event)
         if (attr && s_editMode > 0) {
           switch (menuHorizontalPosition) {
             case 0:
-              CHECK_INCDEC_MODELVAR(event, g_model.varioData.min, -7, 7);
+              CHECK_INCDEC_MODELVAR(event, g_model.varioData.min, -90, 10); // Modif valeur min pour borne vario
               break;
             case 1:
-              CHECK_INCDEC_MODELVAR(event, g_model.varioData.max, -7, 7);
+              CHECK_INCDEC_MODELVAR(event, g_model.varioData.max, -10, 90); // Modif valeur max pour borne vario
               break;
           }
         }
