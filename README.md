@@ -14,14 +14,10 @@ dans ma Fork EdgeTX:
 
 cliquer sur code puis codespace pour create new code space
 
-laisser charger puis une fois dans le terminal taper les commandes:
+laisser charger puis une fois dans le terminal (si ouvre pas terminal cliquer sur le + en haut barre terminal et New Terminal) taper les commandes:
 
 
-cd /workspaces/edgetx-2.11.2-JG/build
 
-rm -rf *
-
-cd /workspaces/edgetx-2.11.2-JG
 
 cmake -DPCB=X7 -DPCBREV=MT12 -DDEFAULT_MODE=2 -DCMAKE_BUILD_TYPE=Release /workspaces/edgetx-2.11.2-JG
 
@@ -35,7 +31,7 @@ make -C arm-none-eabi -j$(nproc) firmware
 
 
 
-mon firmware.bin perso doit etre sur la gauche dans le dossier : build -> arm-none-eabi
+Mon firmware.bin perso doit etre sur la gauche dans le dossier : arm-none-eabi
 
 
 
