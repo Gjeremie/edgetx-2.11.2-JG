@@ -1,4 +1,4 @@
-**Version EdgeTX 2.11.2 Officiel avec mes modif suivantes JG**
+**Version EdgeTX Queen Anne's Revenge" v2.12.0 (ATTENTION)  Officiel avec mes modif suivantes JG**
 
 - modif vario pour avoir son continu quand sensor positif et haché quand négatif (et modif egalement plage vario pour aller de -100 a 100)
   
