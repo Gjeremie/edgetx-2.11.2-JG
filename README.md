@@ -1,7 +1,9 @@
-**Version EdgeTX 2.11.2 avec mes modif suivantes JG**
+**Version EdgeTX 2.11.2 Officiel avec mes modif suivantes JG**
 
-modif vario pour avoir son continu (pas encore fait)
+- modif vario pour avoir son continu quand sensor positif et haché quand négatif (et modif egalement plage vario pour aller de -100 a 100)
+  
 
+<br>
 **Pour faire build edgetx:**
 
 info tiré de : https://github.com/EdgeTX/edgetx/wiki/Building-radio-firmware-in-a-webbrowser-with-Gitpod <br>
@@ -12,9 +14,9 @@ options: https://github.com/EdgeTX/edgetx/wiki/Compilation-options <br> <br>
 
 dans ma Fork EdgeTX:
 
-cliquer sur code puis codespace pour create new code space
+cliquer sur code puis codespace pour create new code space <br>
 
-laisser charger puis une fois dans le terminal (si ouvre pas terminal cliquer sur le + en haut barre terminal et New Terminal) taper les commandes:
+laisser charger puis une fois dans le terminal (si ouvre pas terminal cliquer sur le + en haut barre terminal et New Terminal) taper les commandes: <br>
 
 
 
@@ -27,7 +29,7 @@ make arm-none-eabi-configure
 
 
 
-make -C arm-none-eabi -j$(nproc) firmware
+make -C arm-none-eabi -j$(nproc) firmware <br>
 
 
 
@@ -37,11 +39,4 @@ Mon firmware.bin perso doit etre sur la gauche dans le dossier : arm-none-eabi
 
 
 
- <br> <br>
-**ou AUTRE CODE: <br>**
 
-https://gitpod.io/#https://github.com/Gjeremie/edgetx-2.11.2-JG
-
-cd /workspace/edgetx-2.11.2-JG/
-
-FLAVOR=mt12 tools/build-gh.sh
