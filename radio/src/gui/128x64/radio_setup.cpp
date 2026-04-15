@@ -448,7 +448,7 @@ void menuRadioSetup(event_t event)
         lcdDrawTextIndented(y, STR_REPEAT_AT_ZERO);
         lcdDrawNumber(LCD_W-14, y, VARIO_REPEAT_ZERO+(g_eeGeneral.varioRepeat*10), attr|RIGHT);
         lcdDrawText(lcdLastRightPos, y, STR_MS, attr);
-        if (attr) CHECK_INCDEC_GENVAR(event, g_eeGeneral.varioRepeat, -30, 50);
+        if (attr) CHECK_INCDEC_GENVAR(event, g_eeGeneral.varioRepeat, -39, 50);
         break;
 #endif
 
