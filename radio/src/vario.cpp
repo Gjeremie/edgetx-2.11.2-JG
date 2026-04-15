@@ -55,7 +55,7 @@ float f_vitesse, f_diviseur;
 	   if (f_diviseur <= 0.0f) f_diviseur = 1.0f;
 	   
 	varioFreq = (VARIO_FREQUENCY_ZERO -150 + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
-      varioDuration = (g_eeGeneral.varioRepeat+40)*3; 
+      varioDuration = (g_eeGeneral.varioRepeat+40)*4; 
 	  varioPause = (g_eeGeneral.varioRepeat+40)*2;
       varioFlags = PLAY_BACKGROUND;
     }
@@ -73,7 +73,7 @@ float f_vitesse, f_diviseur;
 		  varioFlags = PLAY_BACKGROUND|PLAY_NOW;
       }
       else { // entre les 2
-         varioDuration = (g_eeGeneral.varioRepeat+40)*6; 
+         varioDuration = (g_eeGeneral.varioRepeat+40)*8; 
 	  varioPause = (g_eeGeneral.varioRepeat+40)*4;
 		  varioFlags = PLAY_BACKGROUND;
       }
