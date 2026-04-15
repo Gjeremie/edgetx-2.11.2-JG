@@ -44,26 +44,41 @@ void varioWakeup()
       verticalSpeed = varioMax;
     else if (verticalSpeed < varioMin)
       verticalSpeed = varioMin;
-
+	  
+float f_plage = (float)(VARIO_FREQUENCY_RANGE + (g_eeGeneral.varioRange * 10));
+float f_vitesse, f_diviseur;
+	  
    if (verticalSpeed <= varioCenterMin) { // vitesse vario negative
-		varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (-verticalSpeed+varioCenterMin)) / (-varioMin));
+
+	f_vitesse = (float)(-verticalSpeed + varioCenterMin);
+    f_diviseur = (float)(-varioMin);
+	   if (f_diviseur <= 0.0f) f_diviseur = 1.0f;
+	   
+	varioFreq = (VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
       varioDuration = (g_eeGeneral.varioRepeat+40)*3; 
 	  varioPause = (g_eeGeneral.varioRepeat+40)*2;
-      varioFlags = PLAY_BACKGROUND|PLAY_NOW;
+      varioFlags = PLAY_BACKGROUND;
     }
     else if (verticalSpeed >= varioCenterMax || !g_model.varioData.centerSilent) { // vitesse vario positive
-      varioFreq = VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch*10) + (((VARIO_FREQUENCY_RANGE+(g_eeGeneral.varioRange*10)) * (verticalSpeed-varioCenterMax)) / varioMax);
+		
+    f_vitesse = (float)(verticalSpeed - varioCenterMax);
+    f_diviseur = (float)varioMax;
+		if (f_diviseur <= 0.0f) f_diviseur = 1.0f;
+		
+	varioFreq = (VARIO_FREQUENCY_ZERO + (g_eeGeneral.varioPitch * 10)) + (int)((f_plage * f_vitesse) / f_diviseur);
     
       if (verticalSpeed >= varioCenterMax || varioCenterMin == varioCenterMax) {
         varioDuration = 35; // continuous beep: we will enter again here before the tone ends
         varioPause = 0;
+		  varioFlags = PLAY_BACKGROUND|PLAY_NOW;
       }
       else { // entre les 2
          varioDuration = (g_eeGeneral.varioRepeat+40)*6; 
 	  varioPause = (g_eeGeneral.varioRepeat+40)*4;
+		  varioFlags = PLAY_BACKGROUND;
       }
       
-      varioFlags = PLAY_BACKGROUND|PLAY_NOW;
+      
     }
 	
 	
